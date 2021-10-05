@@ -4,7 +4,7 @@ reportextension 50600 "ERPG FN Whse. Shipment EXT" extends "ForNAV VAT Sales Inv
     {
         add(Header)
         {
-            column(PickToDate;PickToDate)
+            column(PickToDate;PickToDateText)
             {
             }
         }
@@ -20,6 +20,10 @@ reportextension 50600 "ERPG FN Whse. Shipment EXT" extends "ForNAV VAT Sales Inv
                     Caption = 'Pick To Date';
                     ApplicationArea = All;
                     ToolTip = 'Specify the date to pick orders to';
+
+                    trigger OnValidate()begin
+                        PickToDateText:=Format(PickToDate);
+                    end;
                 }
             }
         }
@@ -30,6 +34,9 @@ reportextension 50600 "ERPG FN Whse. Shipment EXT" extends "ForNAV VAT Sales Inv
             PickToDate:=WorkDate();
         end;
     }
-    var //        [InDataSet]
-    PickToDate: Date;
+    trigger OnPreReport()begin
+    end;
+    var PickToDate: Date;
+    [InDataSet]
+    PickToDateText: Text[40];
 }
