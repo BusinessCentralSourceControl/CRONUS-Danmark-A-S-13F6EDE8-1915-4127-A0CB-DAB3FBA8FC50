@@ -1,4 +1,4 @@
-reportextension 50600 "ERPG FN Whse. Shipment EXT" extends "ForNAV VAT Sales Invoice"
+reportextension 50600 "ERPG FN Whse. Shipment EXT" extends "ForNAV VAT Sales Invoice" // "ForNAV Warehouse Shipment"
 {
     dataset
     {
@@ -32,10 +32,9 @@ reportextension 50600 "ERPG FN Whse. Shipment EXT" extends "ForNAV VAT Sales Inv
         }
         trigger OnOpenPage()var begin
             PickToDate:=WorkDate();
+            PickToDateText:=Format(PickToDate);
         end;
     }
-    trigger OnPreReport()begin
-    end;
     var PickToDate: Date;
     [InDataSet]
     PickToDateText: Text[40];
